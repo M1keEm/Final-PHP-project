@@ -7,7 +7,7 @@
     <meta name="author" content="Michał Banaszek"/>
     <title>Lublin - miasto inspiracji</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico"/>
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico"/>
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <!-- Simple line icons-->
@@ -169,22 +169,6 @@
         </div>
     </div>
 </section>
-<!-- Call to Action-->
-<!--<section class="content-section bg-primary text-white">-->
-<!--    <div class="container px-4 px-lg-5 text-center">-->
-<!--        <h2 class="mb-4">The buttons below are impossible to resist...</h2>-->
-<!--        <a class="btn btn-xl btn-light me-4" href="#!">Click Me!</a>-->
-<!--        <a class="btn btn-xl btn-dark" href="#!">Look at Me!</a>-->
-<!--    </div>-->
-<!--</section>-->
-<!-- Map-->
-<!--<div class="map" id="contact">-->
-<!--    <iframe src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A&amp;output=embed"></iframe>-->
-<!--    <br/>-->
-<!--    <small><a-->
-<!--            href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A"></a></small>-->
-<!--</div>-->
-
 <!-- Bootstrap 5 Contact Form Snippet -->
 <section class="content-section bg-primary" id="opinions">
     <div class="container px-5 my-5">
@@ -216,14 +200,7 @@
                                 <div class="invalid-feedback">Adres email jest niepoprawny.
                                 </div>
                             </div>
-                            <!--                            <div class="form-floating mb-3">-->
-                            <!--                                <input class="form-control" id="artist" type="text" placeholder="Artist"-->
-                            <!--                                       maxlength="20" required/>-->
-                            <!--                                <label for="artist">Artist's Name</label>-->
-                            <!--                                <div class="invalid-feedback">Artist's name is-->
-                            <!--                                    required.-->
-                            <!--                                </div>-->
-                            <!--                            </div>-->
+
                             <div class="form-floating mb-3">
                                 <textarea class="form-control" id="message" type="text"
                                           placeholder="Napisz swoją opinię" style="height:7rem;"
@@ -233,17 +210,7 @@
                                 </div>
                             </div>
                             <p class="mb-1 text-muted" style="text-align: center">Jak bardzo zadowolony jesteś z naszych usług(1-5)?</p>
-                            <!--                            <div class="checkbox-container"-->
-                            <!--                                 style="display: flex;justify-content: center; gap: 5px; margin-bottom: 0.5rem">-->
-                            <!--                                <input type="checkbox" name="spotify" id="spotify" checked>-->
-                            <!--                                <label for="spotify">Spotify</label>-->
-                            <!--                                <input type="checkbox" name="Youtube" id="Youtube">-->
-                            <!--                                <label for="Youtube">Youtube</label>-->
-                            <!--                                <input type="checkbox" name="AppleMusic" id="AppleMusic">-->
-                            <!--                                <label for="AppleMusic">Apple Music</label>-->
-                            <!--                                <input type="checkbox" name="Tidal" id="Tidal">-->
-                            <!--                                <label for="Tidal">Tidal</label>-->
-                            <!--                            </div>-->
+
                             <div class="radio-container"
                                  style="display: flex; justify-content: center; gap: 8px; margin: 10px">
                                 <input type="radio" name="rating" id="star1" value="1" required>
@@ -311,17 +278,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
 <script src="js/scripts.js"></script>
-</body>
-</html>
-
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home</title>
-</head>
-<body>
 
 @auth
     <p>Congrats! You're logged in!</p>
