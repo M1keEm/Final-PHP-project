@@ -289,10 +289,10 @@
                                                 <div class="invalid-feedback">Adres email jest wymagany.</div>
                                                 <div class="invalid-feedback">Adres email jest niepoprawny.</div>
                                             </div>
-
-                                            <div class="mb-3">
+                                            <div class="form-floating mb-3">
                                                 <input class="form-control" name="password" type="password"
                                                        placeholder="hasło" required>
+                                                <label for="loginpassword">Hasło</label>
                                             </div>
                                             <button class="btn btn-primary">Zarejestruj</button>
                                         </form>
