@@ -178,71 +178,183 @@
                     <div class="card-body p-4">
                         <div class="text-center">
                             <div class="h1 fw-light">Zostaw opinię</div>
-                            <p class="mb-4 text-muted">Spodobała ci się nasza strona? A może masz jakieś uwagi i
-                                chciałbyś się nimi podzielić? Zostaw nam opinię!</p>
                         </div>
-                        <form id="contactForm">
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="name" type="text" placeholder="Name"
-                                       pattern="^[a-zA-ZąćęłńóśżźĄĆĘŁŃÓŚŻŹ]{2,20}$" maxlength="20"
-                                       required/>
-                                <label for="name">Nazwa</label>
-                                <div class="invalid-feedback">Nazwa jest wymagana.</div>
+                        @auth
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert" style="width: 75%">
+                                <strong>Gratulacje!</strong> Jesteś zalogowany na konto o
+                                nazwie {{auth()->user()->name}}.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                            </div>
+                            <form action="/logout" method="POST">
+                                @csrf
+                                <button class="delete-button" style="padding: 10px 15px 10px 15px">Logout</button>
+                            </form>
+
+                            <p class="mb-4 text-muted text-center">Spodobała ci się nasza strona? A może masz jakieś
+                                uwagi i
+                                chciałbyś się nimi podzielić? Zostaw nam opinię!</p>
+
+
+                            {{--                            <div class="form-floating mb-3">--}}
+                            {{--                                <textarea class="form-control" id="message" type="text"--}}
+                            {{--                                          placeholder="Napisz swoją opinię" style="height:7rem;"--}}
+                            {{--                                          required></textarea>--}}
+                            {{--                                <label for="message">Napisz swoją opinię...</label>--}}
+                            {{--                                <div class="invalid-feedback">Nie napisałeś nam opnii.. :c--}}
+                            {{--                                </div>--}}
+                            {{--                            </div>--}}
+                            <div>
+                                <p class="text-center">Stwórz nową opinię: </p>
+                                <form action="/create-post" method="POST">
+                                    @csrf
+                                    <div class="form-control"><input name="title" type="text"
+                                                                     style="width: 100%; border: none"
+                                                                     placeholder="Tytuł"></div>
+                                    <textarea class="form-control" name="body" placeholder="Napisz swoją opinię.."
+                                              style="height: 4rem" required></textarea>
+                                    <div class="invalid-feedback">Nie napisałeś nam opnii.. :c</div>
+                                    <div class="d-grid">
+                                        <button class="btn btn-primary btn-lg" type="submit">Wystaw
+                                            opinię
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
 
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="emailAddress" type="email" placeholder="Email"
-                                       maxlength="30" size="30"
-                                       pattern="^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
-                                <label for="emailAddress">Adres email</label>
-                                <div class="invalid-feedback">Adres email jest wymagany.
-                                </div>
-                                <div class="invalid-feedback">Adres email jest niepoprawny.
-                                </div>
-                            </div>
 
-                            <div class="form-floating mb-3">
+
+                            <div>
+                                <h3 class="fw-light" style="margin-top: 1em">Opinie użytkownika {{auth()->user()->name}}
+                                    :</h3>
+                                <h4 class="fw-light" style="margin-top: -25px; margin-left: 10px; margin-bottom: 5px">od najnowszych</h4>
+                                @foreach ($posts as $post)
+                                    <div
+                                        style="border: grey solid 1px; border-radius: 5px; padding: 10px; margin: 10px;">
+                                        <h5>Tytuł: {{$post['title']}} &emsp; Autor: {{$post->user->name}}</h5>
+                                        {{$post['body']}}
+                                        <p><a href="/edit-post/{{$post->id}}"><strong>Edytuj</strong></a></p>
+                                        <form action="/delete-post/{{$post->id}}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="delete-button">Usuń</button>
+                                        </form>
+                                    </div>
+                                @endforeach
+
+                                @else
+                                    <p class="mb-4 text-muted text-center">Spodobała ci się nasza strona? A może masz
+                                        jakieś uwagi i
+                                        chciałbyś się nimi podzielić? Zaloguj się, by zostawić opinię!</p>
+                                    <div>
+                                        <h4 class="text-center">Zarejestruj się:</h4>
+                                        <form action="/register" method="POST">
+                                            @csrf
+                                            <div class="mb-3">
+                                                <input class="form-control" name="name" type="text" placeholder="nazwa"
+                                                       pattern="^[a-zA-ZąćęłńóśżźĄĆĘŁŃÓŚŻŹ0-9]{2,20}$"
+                                                       maxlength="20"
+                                                       required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <input class="form-control" name="email" type="text"
+                                                       placeholder="adres email" maxlength="50" size="50"
+                                                       pattern="^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <input class="form-control" name="password" type="password"
+                                                       placeholder="hasło">
+                                            </div>
+                                            <button class="btn btn-primary">Zarejestruj</button>
+                                        </form>
+                                    </div>
+                                    <div>
+                                        <p class="text-center" style="margin-bottom: -3px">Masz już konto?</p>
+                                        <h4 class="text-center">Zaloguj się:</h4>
+                                        <form action="/login" method="POST">
+                                            @csrf
+                                            <div class="mb-3">
+                                                <input class="form-control" name="loginname" type="text"
+                                                       placeholder="nazwa"
+                                                       pattern="^[a-zA-ZąćęłńóśżźĄĆĘŁŃÓŚŻŹ0-9]{2,20}$"
+                                                       maxlength="20"
+                                                       required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <input class="form-control" name="loginpassword" type="password"
+                                                       placeholder="hasło">
+                                            </div>
+
+                                            <button class="btn btn-primary" style="margin-bottom: 1em">Zaloguj</button>
+                                        </form>
+                                    </div>
+                                @endauth
+
+                                <form id="contactForm">
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" id="name" type="text" placeholder="Name"
+                                               pattern="^[a-zA-ZąćęłńóśżźĄĆĘŁŃÓŚŻŹ]{2,20}$" maxlength="20"
+                                               required/>
+                                        <label for="name">Nazwa</label>
+                                        <div class="invalid-feedback">Nazwa jest wymagana.</div>
+                                    </div>
+
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" id="emailAddress" type="email" placeholder="Email"
+                                               maxlength="30" size="30"
+                                               pattern="^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+                                        <label for="emailAddress">Adres email</label>
+                                        <div class="invalid-feedback">Adres email jest wymagany.
+                                        </div>
+                                        <div class="invalid-feedback">Adres email jest niepoprawny.
+                                        </div>
+                                    </div>
+
+                                    <div class="form-floating mb-3">
                                 <textarea class="form-control" id="message" type="text"
                                           placeholder="Napisz swoją opinię" style="height:7rem;"
                                           required></textarea>
-                                <label for="message">Napisz swoją opinię...</label>
-                                <div class="invalid-feedback">Nie napisałeś nam opnii.. :c
-                                </div>
-                            </div>
-                            <p class="mb-1 text-muted" style="text-align: center">Jak bardzo zadowolony jesteś z naszych usług(1-5)?</p>
+                                        <label for="message">Napisz swoją opinię...</label>
+                                        <div class="invalid-feedback">Nie napisałeś nam opnii.. :c
+                                        </div>
+                                    </div>
+                                    <p class="mb-1 text-muted" style="text-align: center">Jak bardzo zadowolony jesteś z
+                                        naszych usług(1-5)?</p>
 
-                            <div class="radio-container"
-                                 style="display: flex; justify-content: center; gap: 8px; margin: 10px">
-                                <input type="radio" name="rating" id="star1" value="1" required>
-                                <label for="star1">1 </label>
-                                <input type="radio" name="rating" id="star2" value="2" required>
-                                <label for="star2">2 </label>
-                                <input type="radio" name="rating" id="star3" value="3" required>
-                                <label for="star3">3 </label>
-                                <input type="radio" name="rating" id="star4" value="4" required>
-                                <label for="star4">4 </label>
-                                <input type="radio" name="rating" id="star5" value="5" required>
-                                <label for="star5">5 </label>
-                            </div>
-                            <div class="d-none" id="submitSuccessMessage">
-                                <div class="text-center mb-3">
-                                    <div class="fw-bolder">Form submission successful!</div>
-                                </div>
-                            </div>
-                            <div class="d-none" id="submitErrorMessage">
-                                <div class="text-center text-danger mb-3">Error sending message!</div>
-                            </div>
+                                    <div class="radio-container"
+                                         style="display: flex; justify-content: center; gap: 8px; margin: 10px">
+                                        <input type="radio" name="rating" id="star1" value="1" required>
+                                        <label for="star1">1 </label>
+                                        <input type="radio" name="rating" id="star2" value="2" required>
+                                        <label for="star2">2 </label>
+                                        <input type="radio" name="rating" id="star3" value="3" required>
+                                        <label for="star3">3 </label>
+                                        <input type="radio" name="rating" id="star4" value="4" required>
+                                        <label for="star4">4 </label>
+                                        <input type="radio" name="rating" id="star5" value="5" required>
+                                        <label for="star5">5 </label>
+                                    </div>
+                                    <div class="d-none" id="submitSuccessMessage">
+                                        <div class="text-center mb-3">
+                                            <div class="fw-bolder">Form submission successful!</div>
+                                        </div>
+                                    </div>
+                                    <div class="d-none" id="submitErrorMessage">
+                                        <div class="text-center text-danger mb-3">Error sending message!</div>
+                                    </div>
 
-                            <div class="d-grid">
-                                <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Wystaw opinię
-                                </button>
+                                    <div class="d-grid">
+                                        <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Wystaw
+                                            opinię
+                                        </button>
+                                    </div>
+                                </form>
+                                <div id="form-error"></div>
+                                <section id="data-section">
+                                    <h2 class="fw-light" style="margin-top: 1em">Opinie użytkowników:</h2>
+                                    <ul id="data-list"></ul>
+                                </section>
                             </div>
-                        </form>
-                        <div id="form-error"></div>
-                        <section id="data-section">
-                            <h2 class="fw-light" style="margin-top: 1em">Opinie użytkowników:</h2>
-                            <ul id="data-list"></ul>
-                        </section>
                     </div>
                 </div>
             </div>
@@ -278,61 +390,5 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
 <script src="js/scripts.js"></script>
-
-@auth
-    <p>Congrats! You're logged in!</p>
-    <form action="/logout" method="POST">
-        @csrf
-        <button>Logout</button>
-    </form>
-
-    <div style="border: 3px solid black">
-        <h2>Create a new post</h2>
-        <form action="/create-post" method="POST">
-            @csrf
-            <input name="title" type="text" placeholder="title">
-            <textarea name="body" placeholder="body content..."></textarea>
-            <button>Create post</button>
-        </form>
-    </div>
-
-    <div style="border: 3px solid black">
-        <h2>All posts</h2>
-        @foreach ($posts as $post)
-            <div style="background-color: gray; padding: 10px; margin: 10px;">
-                <h3>{{$post['title']}} by {{$post->user->name}}</h3>
-                {{$post['body']}}
-                <p><a href="/edit-post/{{$post->id}}">Edit</a></p>
-                <form action="/delete-post/{{$post->id}}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button>Delete</button>
-                </form>
-            </div>
-        @endforeach
-
-        @else
-
-            <div style="border: 3px solid black">
-                <h2>Register</h2>
-                <form action="/register" method="POST">
-                    @csrf
-                    <input name="name" type="text" placeholder="name">
-                    <input name="email" type="text" placeholder="email">
-                    <input name="password" type="password" placeholder="password">
-                    <button>Register</button>
-                </form>
-            </div>
-            <div style="border: 3px solid black">
-                <h2>Login</h2>
-                <form action="/login" method="POST">
-                    @csrf
-                    <input name="loginname" type="text" placeholder="name">
-                    <input name="loginpassword" type="password" placeholder="password">
-                    <button>Log in</button>
-                </form>
-            </div>
-@endauth
-
 
 </body>
