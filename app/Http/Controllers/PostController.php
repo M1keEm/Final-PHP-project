@@ -12,7 +12,7 @@ class PostController extends Controller
         if (auth()->user()->id === $post['user_id']) {
             $post->delete();
         }
-        return redirect('/');
+        return redirect('/#opinions');
     }
 
     public function actuallyUpdatePost(Post $post, Request $request)
@@ -29,7 +29,7 @@ class PostController extends Controller
         $incomingFields['body'] = strip_tags($incomingFields['body']);
 
         $post->update($incomingFields);
-        return redirect('/');
+        return redirect('/#opinions');
     }
 
     public function showEditScreen(Post $post)
@@ -51,6 +51,6 @@ class PostController extends Controller
         $incomingFields['body'] = strip_tags($incomingFields['body']);
         $incomingFields['user_id'] = auth()->id();
         Post::create($incomingFields);
-        return redirect('/');
+        return redirect('/#opinions');
     }
 }
