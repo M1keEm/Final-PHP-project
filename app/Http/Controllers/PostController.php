@@ -9,7 +9,7 @@ class PostController extends Controller
 {
     public function deletePost(Post $post)
     {
-        if (auth()->user()->id === $post['user_id']) {
+        if (auth()->user()->id === $post['user_id'] | auth()->user()->is_admin) {
             $post->delete();
         }
         return redirect('/#opinions');
@@ -17,7 +17,7 @@ class PostController extends Controller
 
     public function actuallyUpdatePost(Post $post, Request $request)
     {
-        if (auth()->user()->id !== $post['user_id']) {
+        if (auth()->user()->id !== $post['user_id'] & !auth()->user()->is_admin) {
             return redirect('/');
         }
         $incomingFields = $request->validate([
@@ -34,7 +34,7 @@ class PostController extends Controller
 
     public function showEditScreen(Post $post)
     {
-        if (auth()->user()->id !== $post['user_id']) {
+        if (auth()->user()->id !== $post['user_id'] & !auth()->user()->is_admin) {
             return redirect('/');
         }
         return view('edit-post', ['post' => $post]);

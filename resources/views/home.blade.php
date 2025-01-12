@@ -265,6 +265,28 @@
                                     </div>
                                 @endforeach
 
+                                @if(auth()->user()->is_admin)
+                                    <div>
+                                        <h3 class="fw-light" style="margin-top: 1em">Wszystkie opinie:</h3>
+                                        <h4 class="fw-light"
+                                            style="margin-top: -25px; margin-left: 10px; margin-bottom: 5px">od
+                                            najnowszych</h4>
+                                        @foreach ($allPosts as $post)
+                                            <div
+                                                style="border: grey solid 1px; border-radius: 5px; padding: 10px; margin: 10px;">
+                                                <h5>Tytuł: {{$post['title']}} &emsp; Autor: {{$post->user->name}}</h5>
+                                                {{$post['body']}}
+                                                <p><a href="/edit-post/{{$post->id}}"><strong>Edytuj</strong></a></p>
+                                                <form action="/delete-post/{{$post->id}}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="delete-button">Usuń</button>
+                                                </form>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                @endif
+
                                 @else
                                     <p class="mb-4 text-muted text-center">Spodobała ci się nasza strona? A może masz
                                         jakieś uwagi i
@@ -327,7 +349,6 @@
                                 @foreach ($allPosts as $post)
                                     <div style="border: grey solid 1px; border-radius: 5px; padding: 10px; margin:
                                         10px;"><h6>Tytuł: {{$post['title']}} &emsp; Autor: {{$post->user->name}}</h6>
-                                        {{$post['body']}}
                                         {{$post['body']}}
                                     </div>
                                 @endforeach
