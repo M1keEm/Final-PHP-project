@@ -18,7 +18,7 @@ class UserController extends Controller
         if (auth()->attempt(['name' => $incomingFields['loginname'], 'password' => $incomingFields['loginpassword']])) {
             $request->session()->regenerate();
         }
-        return redirect('/');
+        return redirect('/#opinions');
     }
 
     public function logout()
@@ -32,12 +32,12 @@ class UserController extends Controller
     {
         $incomingFields = $request->validate([
             'name' => ['required', 'string', 'min:3', 'max:20', Rule::unique('users', 'name')],
-            'email' => ['required', 'email', Rule::unique('users', 'email')],
+            'email' => ['required', 'email', 'max:50', Rule::unique('users', 'email')],
             'password' => 'required|string|min:7|max:50',
         ]);
         $incomingFields['password'] = bcrypt($incomingFields['password']);
         $user = User::create($incomingFields);
         auth()->login($user);
-        return redirect('/');
+        return redirect('/#opinions');
     }
 }
