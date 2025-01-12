@@ -24,27 +24,37 @@
         </form>
     </div>
 
-@else
+    <div style="border: 3px solid black">
+        <h2>All posts</h2>
+        @foreach ($posts as $post)
+            <div style="background-color: gray; padding: 10px; margin: 10px;">
+                <h3>{{$post['title']}}</h3>
+                {{$post['body']}}
 
-    <div style="border: 3px solid black">
-        <h2>Register</h2>
-        <form action="/register" method="POST">
-            @csrf
-            <input name="name" type="text" placeholder="name">
-            <input name="email" type="text" placeholder="email">
-            <input name="password" type="password" placeholder="password">
-            <button>Register</button>
-        </form>
-    </div>
-    <div style="border: 3px solid black">
-        <h2>Login</h2>
-        <form action="/login" method="POST">
-            @csrf
-            <input name="loginname" type="text" placeholder="name">
-            <input name="loginpassword" type="password" placeholder="password">
-            <button>Log in</button>
-        </form>
-    </div>
+            </div>
+        @endforeach
+
+        @else
+
+            <div style="border: 3px solid black">
+                <h2>Register</h2>
+                <form action="/register" method="POST">
+                    @csrf
+                    <input name="name" type="text" placeholder="name">
+                    <input name="email" type="text" placeholder="email">
+                    <input name="password" type="password" placeholder="password">
+                    <button>Register</button>
+                </form>
+            </div>
+            <div style="border: 3px solid black">
+                <h2>Login</h2>
+                <form action="/login" method="POST">
+                    @csrf
+                    <input name="loginname" type="text" placeholder="name">
+                    <input name="loginpassword" type="password" placeholder="password">
+                    <button>Log in</button>
+                </form>
+            </div>
 @endauth
 
 
