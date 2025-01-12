@@ -11,10 +11,11 @@ Route::get('/', function () {
 
 Route::get('/', function () {
     $posts = [];
+    $allPosts = Post::latest()->get();
     if (auth()->check()) {
         $posts = auth()->user()->usersCoolPosts()->latest()->get();
     }
-    return view('home', ['posts' => $posts]);
+    return view('home', ['posts' => $posts], ['allPosts' => $allPosts]);
 });
 
 Route::post('/register', [UserController::class, 'register']);

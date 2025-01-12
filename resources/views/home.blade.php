@@ -320,14 +320,21 @@
                                         </form>
                                     </div>
                                 @endauth
-
+                                <h2 class="fw-light" style="margin-top: 1em">Opinie wszystkich użytkowników:</h2>
+                                <h4 class="fw-light"
+                                    style="margin-top: -25px; margin-left: 10px; margin-bottom: 5px">od
+                                    najnowszych</h4>
+                                @foreach ($allPosts as $post)
+                                    <div style="border: grey solid 1px; border-radius: 5px; padding: 10px; margin:
+                                        10px;"><h6>Tytuł: {{$post['title']}} &emsp; Autor: {{$post->user->name}}</h6>
+                                        {{$post['body']}}
+                                        {{$post['body']}}
+                                    </div>
+                                @endforeach
                                 <form id="contactForm">
                                 </form>
                                 <div id="form-error"></div>
-                                <section id="data-section">
-                                    <h2 class="fw-light" style="margin-top: 1em">Opinie użytkowników:</h2>
-                                    <ul id="data-list"></ul>
-                                </section>
+
                             </div>
                     </div>
                 </div>
