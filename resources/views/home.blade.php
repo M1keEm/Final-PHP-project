@@ -30,6 +30,7 @@
         <li class="sidebar-nav-item"><a href="#whyUs">Nasze usługi</a></li>
         <li class="sidebar-nav-item"><a href="#categories">Kategorie</a></li>
         <li class="sidebar-nav-item"><a href="#opinions">Opinie</a></li>
+        <li class="sidebar-nav-item"><a href="#login">Zaloguj się</a></li>
     </ul>
 </nav>
 <!-- Header-->
@@ -310,26 +311,30 @@
                                         </form>
                                     </div>
                                     <div>
-                                        <p class="text-center" style="margin-bottom: -3px">Masz już konto?</p>
-                                        <h4 class="text-center">Zaloguj się:</h4>
-                                        <form action="/login" method="POST">
-                                            @csrf
-                                            <div class="form-floating mb-3">
-                                                <input class="form-control" name="loginname" type="text"
-                                                       placeholder="Name"
-                                                       pattern="^[a-zA-ZąćęłńóśżźĄĆĘŁŃÓŚŻŹ0-9]{2,20}$" maxlength="20"
-                                                       required/>
-                                                <label for="name">Nazwa</label>
-                                                <div class="invalid-feedback">Nazwa jest wymagana.</div>
-                                            </div>
-                                            <div class="form-floating mb-3">
-                                                <input class="form-control" name="loginpassword" type="password"
-                                                       placeholder="hasło" required>
-                                                <label for="loginpassword">Hasło</label>
-                                            </div>
+                                        <section id="login">
+                                            <p class="text-center" style="margin-bottom: -3px">Masz już konto?</p>
+                                            <h4 class="text-center">Zaloguj się:</h4>
+                                            <form action="/login" method="POST">
+                                                @csrf
+                                                <div class="form-floating mb-3">
+                                                    <input class="form-control" name="loginname" type="text"
+                                                           placeholder="Name"
+                                                           pattern="^[a-zA-ZąćęłńóśżźĄĆĘŁŃÓŚŻŹ0-9]{2,20}$"
+                                                           maxlength="20"
+                                                           required/>
+                                                    <label for="name">Nazwa</label>
+                                                    <div class="invalid-feedback">Nazwa jest wymagana.</div>
+                                                </div>
+                                                <div class="form-floating mb-3">
+                                                    <input class="form-control" name="loginpassword" type="password"
+                                                           placeholder="hasło" required>
+                                                    <label for="loginpassword">Hasło</label>
+                                                </div>
 
-                                            <button class="btn btn-primary" style="margin-bottom: 1em">Zaloguj</button>
-                                        </form>
+                                                <button class="btn btn-primary" style="margin-bottom: 1em">Zaloguj
+                                                </button>
+                                            </form>
+                                        </section>
                                     </div>
                                 @endauth
                                 <h2 class="fw-light" style="margin-top: 1em">Opinie wszystkich użytkowników:</h2>

@@ -30,6 +30,7 @@
         <li class="sidebar-nav-item"><a href="/#whyUs">Nasze usługi</a></li>
         <li class="sidebar-nav-item"><a href="/#categories">Kategorie</a></li>
         <li class="sidebar-nav-item"><a href="#opinions">Posty</a></li>
+        <li class="sidebar-nav-item"><a href="/#login">Zaloguj się</a></li>
     </ul>
 </nav>
 <!-- Header-->
@@ -79,7 +80,7 @@
             @if(auth()->user()->is_admin)
                 <div>
                     <h3 class="text-center">Stwórz nowy post: </h3>
-                    <form action="/create-post" method="POST">
+                    <form action="/create-post" method="POST" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="category" value=2>
                         <input class="form-control" name="title" type="text"
@@ -87,9 +88,9 @@
                                placeholder="Tytuł" required>
                         <textarea class="form-control" name="body" placeholder="Napisz post.."
                                   style="height: 4rem; margin-bottom: 10px" required></textarea>
+                        <label for="image">Zdjęcie:</label>
+                        <input type="file" name="image" id="image">
                         <div class="invalid-feedback">Nie napisałeś treści posta.. :c</div>
-                        <input type="file" class="form-control" name="image" accept=".jpg" style="margin-bottom: 10px"
-                               required>
                         <div class="d-none" id="submitSuccessMessage">
                             <div class="text-center mb-3">
                                 <div class="fw-bolder">Form submission successful!</div>
@@ -107,7 +108,7 @@
                     @if($post['category']===2)
                         <div class="card mb-4">
                             <a href="/trybunalska"><img class="card-img-top"
-                                                        src="assets/img/Trybunalska-Lublin-City-Pub-362228425-813562113607527-8760184987243672556-n-jpg.jpg"
+                                                        src="{{ asset('storage/' . $post->image) }}"
                                                         alt="trybunalska obraz"/></a>
                             <div class="card-body">
                                 <div class="small text-muted">Ostatnio edytowane: {{$post['updated_at']}}</div>
@@ -267,15 +268,16 @@
         {{--                </div>--}}
         {{--            </div>--}}
         <!-- Side widget-->
-    {{--            <div class="card mb-4">--}}
-    {{--                <div class="card-header">Side Widget</div>--}}
-    {{--                <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use,--}}
-    {{--                    and feature the Bootstrap 5 card component!--}}
-    {{--                </div>--}}
-    {{--            </div>--}}
-    {{--    </div>--}}
-    {{--</div>--}}
-    {{--</div>--}}
+        {{--            <div class="card mb-4">--}}
+        {{--                <div class="card-header">Side Widget</div>--}}
+        {{--                <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use,--}}
+        {{--                    and feature the Bootstrap 5 card component!--}}
+        {{--                </div>--}}
+        {{--            </div>--}}
+        {{--    </div>--}}
+        {{--</div>--}}
+        {{--</div>--}}
+    </div>
 </section>
 <!-- CDN Link to SB Forms Scripts -->
 <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>

@@ -75,6 +75,10 @@ class PostController extends Controller
         $incomingFields['title'] = strip_tags($incomingFields['title']);
         $incomingFields['body'] = strip_tags($incomingFields['body']);
         $incomingFields['user_id'] = auth()->id();
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images', 'public');
+            $incomingFields['image'] = $imagePath;
+        }
         Post::create($incomingFields);
         $request->input('redirect_url', '/');
         if (str_contains(url()->previous(), '/food')) {
