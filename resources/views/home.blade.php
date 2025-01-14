@@ -209,26 +209,10 @@
                                     <input type="hidden" name="category" value="0">
                                     <input class="form-control" name="title" type="text"
                                            style="width: 100%; margin-bottom: 10px"
-                                           placeholder="Tytuł">
+                                           placeholder="Tytuł" required>
                                     <textarea class="form-control" name="body" placeholder="Napisz swoją opinię.."
                                               style="height: 4rem; margin-bottom: 10px" required></textarea>
                                     <div class="invalid-feedback">Nie napisałeś nam opnii.. :c</div>
-                                    {{--                                    <p class="mb-1 text-muted" style="text-align: center">Jak bardzo zadowolony jesteś z--}}
-                                    {{--                                        naszych usług(1-5)?</p>--}}
-
-                                    {{--                                    <div class="radio-container"--}}
-                                    {{--                                         style="display: flex; justify-content: center; gap: 8px; margin: 10px">--}}
-                                    {{--                                        <input type="radio" name="rating" id="star1" value="1" required>--}}
-                                    {{--                                        <label for="star1">1 </label>--}}
-                                    {{--                                        <input type="radio" name="rating" id="star2" value="2" required>--}}
-                                    {{--                                        <label for="star2">2 </label>--}}
-                                    {{--                                        <input type="radio" name="rating" id="star3" value="3" required>--}}
-                                    {{--                                        <label for="star3">3 </label>--}}
-                                    {{--                                        <input type="radio" name="rating" id="star4" value="4" required>--}}
-                                    {{--                                        <label for="star4">4 </label>--}}
-                                    {{--                                        <input type="radio" name="rating" id="star5" value="5" required>--}}
-                                    {{--                                        <label for="star5">5 </label>--}}
-                                    {{--                                    </div>--}}
                                     <div class="d-none" id="submitSuccessMessage">
                                         <div class="text-center mb-3">
                                             <div class="fw-bolder">Form submission successful!</div>
