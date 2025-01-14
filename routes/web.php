@@ -24,6 +24,10 @@ Route::post('/logout', [UserController::class, 'logout']);
 
 Route::post('/login', [UserController::class, 'login']);
 
+Route::get('/food', function () {
+    return view('food');
+});
+
 // Blog post routes
 
 Route::post('/create-post', [PostController::class, 'createPost']);

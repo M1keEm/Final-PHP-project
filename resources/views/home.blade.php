@@ -7,7 +7,7 @@
     <meta name="author" content="Michał Banaszek"/>
     <title>Lublin - miasto inspiracji</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico"/>
+    <link rel="apple-touch-icon" type="image/x-icon" href="/public/favicon.ico"/>
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <!-- Simple line icons-->
@@ -128,7 +128,7 @@
                 </a>
             </div>
             <div class="col-lg-6">
-                <a class="portfolio-item" href="food.html">
+                <a class="portfolio-item" href="/food">
                     <div class="caption">
                         <div class="caption-content">
                             <div class="h1 mb-1">Jedzenie</div>
