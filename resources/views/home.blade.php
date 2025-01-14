@@ -137,7 +137,7 @@
                             </p>
                         </div>
                     </div>
-                    <img class="img-fluid" src="assets/img/niemiec3_2.jpg" alt="..."/>
+                    <img class="img-fluid" src="assets/img/kuchniaLublina.jpg" alt="..."/>
                 </a>
             </div>
             <div class="col-lg-6">
