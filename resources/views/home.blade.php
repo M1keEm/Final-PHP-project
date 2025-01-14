@@ -207,10 +207,10 @@
                                 <form action="/create-post" method="POST">
                                     @csrf
                                     <input class="form-control" name="title" type="text"
-                                                                     style="width: 100%;"
+                                                                     style="width: 100%; margin-bottom: 10px"
                                                                      placeholder="Tytuł">
                                     <textarea class="form-control" name="body" placeholder="Napisz swoją opinię.."
-                                              style="height: 4rem" required></textarea>
+                                              style="height: 4rem; margin-bottom: 10px" required></textarea>
                                     <div class="invalid-feedback">Nie napisałeś nam opnii.. :c</div>
                                     {{--                                    <p class="mb-1 text-muted" style="text-align: center">Jak bardzo zadowolony jesteś z--}}
                                     {{--                                        naszych usług(1-5)?</p>--}}
