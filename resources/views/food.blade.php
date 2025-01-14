@@ -68,6 +68,14 @@
 
     <div class="container">
         @auth
+            <form action="/logout" method="POST"
+                  style="position: fixed;top: 20px;    left: 20px;    z-index: 1000; /* Ensures it is on top of other elements */">
+                @csrf
+                <button class="delete-button"
+                        style="padding: 15px 15px 15px 15px; margin-top: -10px; width: 100%; height: 100%">
+                    Wyloguj
+                </button>
+            </form>
             @if(auth()->user()->is_admin)
                 <div>
                     <h3 class="text-center">Stwórz nowy post: </h3>
@@ -80,6 +88,8 @@
                         <textarea class="form-control" name="body" placeholder="Napisz post.."
                                   style="height: 4rem; margin-bottom: 10px" required></textarea>
                         <div class="invalid-feedback">Nie napisałeś treści posta.. :c</div>
+                        <input type="file" class="form-control" name="image" accept=".jpg" style="margin-bottom: 10px"
+                               required>
                         <div class="d-none" id="submitSuccessMessage">
                             <div class="text-center mb-3">
                                 <div class="fw-bolder">Form submission successful!</div>

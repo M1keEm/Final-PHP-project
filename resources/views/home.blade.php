@@ -180,21 +180,22 @@
                             <div class="h1 fw-light">Zostaw opinię</div>
                         </div>
                         @auth
+                            <form action="/logout" method="POST"
+                                  style="position: fixed;top: 20px;    left: 20px;    z-index: 1000; /* Ensures it is on top of other elements */">
+                                @csrf
+                                <button class="delete-button"
+                                        style="padding: 15px 15px 15px 15px; margin-top: -10px; width: 100%; height: 100%">
+                                    Wyloguj
+                                </button>
+                            </form>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="alert alert-warning alert-dismissible fade show" role="alert"
-                                     style="width: 75%">
+                                     style="width: 100%">
                                     <strong>Gratulacje!</strong> Jesteś zalogowany na konto o
                                     nazwie {{auth()->user()->name}}.
                                     <button type="button" class="btn-close" data-bs-dismiss="alert"
                                             aria-label="Close"></button>
                                 </div>
-                                <form action="/logout" method="POST">
-                                    @csrf
-                                    <button class="delete-button"
-                                            style="padding: 15px 15px 15px 15px; margin-top: -10px; width: 100%; height: 100%">
-                                        Wyloguj
-                                    </button>
-                                </form>
                             </div>
 
 
