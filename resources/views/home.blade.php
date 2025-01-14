@@ -21,18 +21,32 @@
 </head>
 <body id="page-top">
 <!-- Navigation-->
-<a class="menu-toggle rounded" href="#"><i class="fas fa-bars"></i></a>
-<nav id="sidebar-wrapper">
-    <ul class="sidebar-nav">
-        <li class="sidebar-brand"><a href="#page-top">Lublin</a></li>
-        <li class="sidebar-nav-item"><a href="#page-top">Strona główna</a></li>
-        <li class="sidebar-nav-item"><a href="#about">Opis</a></li>
-        <li class="sidebar-nav-item"><a href="#whyUs">Nasze usługi</a></li>
-        <li class="sidebar-nav-item"><a href="#categories">Kategorie</a></li>
-        <li class="sidebar-nav-item"><a href="#opinions">Opinie</a></li>
-        <li class="sidebar-nav-item"><a href="#login">Zaloguj się</a></li>
-    </ul>
-</nav>
+@auth()
+    <a class="menu-toggle rounded" href="#"><i class="fas fa-bars"></i></a>
+    <nav id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand"><a href="#page-top">Lublin</a></li>
+            <li class="sidebar-nav-item"><a href="#page-top">Strona główna</a></li>
+            <li class="sidebar-nav-item"><a href="#about">Opis</a></li>
+            <li class="sidebar-nav-item"><a href="#whyUs">Nasze usługi</a></li>
+            <li class="sidebar-nav-item"><a href="#categories">Kategorie</a></li>
+            <li class="sidebar-nav-item"><a href="#opinions">Opinie</a></li>
+        </ul>
+    </nav>
+@else
+    <a class="menu-toggle rounded" href="#"><i class="fas fa-bars"></i></a>
+    <nav id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand"><a href="#page-top">Lublin</a></li>
+            <li class="sidebar-nav-item"><a href="#page-top">Strona główna</a></li>
+            <li class="sidebar-nav-item"><a href="#about">Opis</a></li>
+            <li class="sidebar-nav-item"><a href="#whyUs">Nasze usługi</a></li>
+            <li class="sidebar-nav-item"><a href="#categories">Kategorie</a></li>
+            <li class="sidebar-nav-item"><a href="#opinions">Opinie</a></li>
+            <li class="sidebar-nav-item"><a href="#login">Zaloguj się</a></li>
+        </ul>
+    </nav>
+@endauth
 <!-- Header-->
 <header class="masthead d-flex align-items-center">
     <div class="container px-4 px-lg-5 text-center">
@@ -49,9 +63,12 @@
             <div class="col-auto">
                 <h2>Odkryj uroki Lublina - przewodnik po najciekawszych atrakcjach miasta!</h2>
                 <p class="lead mb-5">
-                    Witamy na stronie poświęconej Lublinowi, urokliwemu miastu położonemu we wschodniej Polsce, pełnemu
-                    bogatej historii, kultury i niezapomnianych miejsc. Lublin zachwyca swoją średniowieczną starówką,
-                    tętniącym życiem kulturalnym oraz wyjątkowym klimatem, który przyciąga turystów z całego świata. Na
+                    Witamy na stronie poświęconej Lublinowi, urokliwemu miastu położonemu we wschodniej Polsce,
+                    pełnemu
+                    bogatej historii, kultury i niezapomnianych miejsc. Lublin zachwyca swoją średniowieczną
+                    starówką,
+                    tętniącym życiem kulturalnym oraz wyjątkowym klimatem, który przyciąga turystów z całego świata.
+                    Na
                     naszej stronie znajdziesz szczegółowe opisy najważniejszych atrakcji, praktyczne porady oraz
                     propozycje tras zwiedzania, które pozwolą Ci odkryć to niezwykłe miasto w pełni. Zapraszamy do
                     wspólnej podróży po Lublinie, mieście, które z pewnością zostanie w Twojej pamięci na długo.
@@ -133,7 +150,8 @@
                     <div class="caption">
                         <div class="caption-content">
                             <div class="h1 mb-1">Jedzenie</div>
-                            <p class="mb-0">Kuchnia Lublina zachwyca lokalnymi specjałami, takimi jak cebularze, pierogi
+                            <p class="mb-0">Kuchnia Lublina zachwyca lokalnymi specjałami, takimi jak cebularze,
+                                pierogi
                                 oraz tradycyjne dania kuchni kresowej, które są prawdziwą ucztą dla smakoszy.
                             </p>
                         </div>
@@ -146,7 +164,8 @@
                     <div class="caption">
                         <div class="caption-content">
                             <div class="h1 mb-1">Transport</div>
-                            <p class="mb-0">Transport w Lublinie jest dobrze zorganizowany, obejmując rozbudowaną sieć
+                            <p class="mb-0">Transport w Lublinie jest dobrze zorganizowany, obejmując rozbudowaną
+                                sieć
                                 komunikacji miejskiej, która ułatwia podróżowanie po całym mieście i jego okolicach.
                             </p>
                         </div>
@@ -159,7 +178,8 @@
                     <div class="caption">
                         <div class="caption-content">
                             <div class="h1 mb-1">Sport</div>
-                            <p class="mb-0">Sport w Lublinie kwitnie dzięki licznym klubom i obiektom sportowym, gdzie
+                            <p class="mb-0">Sport w Lublinie kwitnie dzięki licznym klubom i obiektom sportowym,
+                                gdzie
                                 mieszkańcy i turyści mogą aktywnie spędzać czas, uprawiając różnorodne dyscypliny.
                             </p>
                         </div>
@@ -185,7 +205,9 @@
                                   style="position: fixed;top: 20px;    left: 20px;    z-index: 1000; /* Ensures it is on top of other elements */">
                                 @csrf
                                 <button class="delete-button"
-                                        style="padding: 15px 15px 15px 15px; margin-top: -10px; width: 100%; height: 100%">
+                                        style="padding: 15px 15px 15px 15px; margin-top: -10px; width: 100%; height: 100%; background-color: lightyellow; color: black;"
+                                        onmouseover="this.style.backgroundColor='red';this.style.color='white';"
+                                        onmouseout="this.style.backgroundColor='lightyellow';this.style.color='black'">
                                     Wyloguj
                                 </button>
                             </form>
@@ -232,9 +254,11 @@
 
 
                             <div>
-                                <h3 class="fw-light" style="margin-top: 1em">Opinie użytkownika {{auth()->user()->name}}
+                                <h3 class="fw-light" style="margin-top: 1em">Opinie
+                                    użytkownika {{auth()->user()->name}}
                                     :</h3>
-                                <h4 class="fw-light" style="margin-top: -25px; margin-left: 10px; margin-bottom: 5px">od
+                                <h4 class="fw-light"
+                                    style="margin-top: -25px; margin-left: 10px; margin-bottom: 5px">od
                                     najnowszych</h4>
                                 @foreach ($posts as $post)
                                     @if($post['category']===0)
@@ -265,7 +289,8 @@
                                                     <h5>Tytuł: {{$post['title']}} &emsp;
                                                         Autor: {{$post->user->name}}</h5>
                                                     {{$post['body']}}
-                                                    <p><a href="/edit-post/{{$post->id}}"><strong>Edytuj</strong></a>
+                                                    <p>
+                                                        <a href="/edit-post/{{$post->id}}"><strong>Edytuj</strong></a>
                                                     </p>
                                                     <form action="/delete-post/{{$post->id}}" method="POST">
                                                         @csrf
@@ -279,7 +304,8 @@
                                 @endif
 
                                 @else
-                                    <p class="mb-4 text-muted text-center">Spodobała ci się nasza strona? A może masz
+                                    <p class="mb-4 text-muted text-center">Spodobała ci się nasza strona? A może
+                                        masz
                                         jakieś uwagi i
                                         chciałbyś się nimi podzielić? Zarejestruj się, by zostawić opinię!</p>
                                     <div>
@@ -289,7 +315,8 @@
                                             <div class="form-floating mb-3">
                                                 <input class="form-control" name="name" type="text"
                                                        placeholder="Name"
-                                                       pattern="^[a-zA-ZąćęłńóśżźĄĆĘŁŃÓŚŻŹ0-9]{2,20}$" maxlength="20"
+                                                       pattern="^[a-zA-ZąćęłńóśżźĄĆĘŁŃÓŚŻŹ0-9]{2,20}$"
+                                                       maxlength="20"
                                                        required/>
                                                 <label for="name">Nazwa</label>
                                                 <div class="invalid-feedback">Nazwa jest wymagana.</div>
@@ -297,7 +324,8 @@
                                             <div class="form-floating mb-3">
                                                 <input class="form-control" name="email" type="email"
                                                        placeholder="Adres email" maxlength="50" size="50"
-                                                       pattern="^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+                                                       pattern="^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                                       required>
                                                 <label for="email">Adres email</label>
                                                 <div class="invalid-feedback">Adres email jest wymagany.</div>
                                                 <div class="invalid-feedback">Adres email jest niepoprawny.</div>

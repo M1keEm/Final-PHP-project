@@ -73,7 +73,9 @@
                   style="position: fixed;top: 20px;    left: 20px;    z-index: 1000; /* Ensures it is on top of other elements */">
                 @csrf
                 <button class="delete-button"
-                        style="padding: 15px 15px 15px 15px; margin-top: -10px; width: 100%; height: 100%">
+                        style="padding: 15px 15px 15px 15px; margin-top: -10px; width: 100%; height: 100%; background-color: lightyellow; color: black;"
+                        onmouseover="this.style.backgroundColor='red';this.style.color='white';"
+                        onmouseout="this.style.backgroundColor='lightyellow';this.style.color='black'">
                     Wyloguj
                 </button>
             </form>
