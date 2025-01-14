@@ -48,4 +48,32 @@
         </div>
     </div>
 </section>
+<footer class="footer text-center">
+    <div class="container px-4 px-lg-5">
+        <ul class="list-inline">
+            <li class="list-inline-item">
+                <a class="social-link rounded-circle text-white mr-3" href="https://www.facebook.com/MiastoLublin/"
+                   target="_blank">
+                    <i class="icon-social-facebook"
+                       style="display: flex; align-items: center; justify-content: center; height: 100%;"></i>
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a class="social-link rounded-circle text-white mr-3" href="https://x.com/miasto_lublin?lang=pl"
+                   target="_blank"> <i class="icon-social-twitter"
+                                       style="display: flex; align-items: center; justify-content: center; height: 100%;"></i>
+
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a class="social-link rounded-circle text-white" href="https://www.instagram.com/miastolublin/"
+                   target="_blank">
+                    <i class="icon-social-instagram"
+                       style="display: flex; align-items: center; justify-content: center; height: 100%;"></i>
+                </a>
+            </li>
+        </ul>
+        <p class="text-muted small mb-0" style="margin-top: 3rem"> Lublin - miasto inspiracji <br>Copyright &copy MB</p>
+    </div>
+</footer>
 </body>
