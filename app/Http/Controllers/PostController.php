@@ -45,8 +45,8 @@ class PostController extends Controller
         $incomingFields = $request->validate([
             'title' => 'required|string',
             'body' => 'required|string',
-        ]);
-
+            'category' => 'integer',
+            'image' => 'image']);
         $incomingFields['title'] = strip_tags($incomingFields['title']);
         $incomingFields['body'] = strip_tags($incomingFields['body']);
         $incomingFields['user_id'] = auth()->id();

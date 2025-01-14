@@ -18,15 +18,24 @@ Route::get('/', function () {
     return view('home', ['posts' => $posts], ['allPosts' => $allPosts]);
 });
 
+Route::get('/food', function () {
+    $posts = [];
+    $allPosts = Post::latest()->get();
+    if (auth()->check()) {
+        $posts = auth()->user()->usersCoolPosts()->latest()->get();
+    }
+    return view('food', ['posts' => $posts], ['allPosts' => $allPosts]);
+});
+
 Route::post('/register', [UserController::class, 'register']);
 
 Route::post('/logout', [UserController::class, 'logout']);
 
 Route::post('/login', [UserController::class, 'login']);
 
-Route::get('/food', function () {
-    return view('food');
-});
+//Route::get('/food', function () {
+//    return view('food');
+//});
 
 // Blog post routes
 

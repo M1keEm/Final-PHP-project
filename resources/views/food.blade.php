@@ -65,163 +65,229 @@
     </div>
 </section>
 <div class="container">
-    <div class="row">
-        <!-- Blog entries-->
-        <div class="col-lg-8">
-            <!-- Featured blog post-->
-            <div class="card mb-4">
-                <a href="trybunalska.html"><img class="card-img-top"
-                                                src="assets/img/Trybunalska-Lublin-City-Pub-362228425-813562113607527-8760184987243672556-n-jpg.jpg"
-                                                alt="trybunalska obraz"/></a>
-                <div class="card-body">
-                    <div class="small text-muted">27 maja, 2024</div>
-                    <h2 class="card-title">Trybunalska Lublin City Pub</h2>
-                    <p class="card-text">Smakuj elegancję w sercu Lublina - Trybunalska</p>
-                    <a class="btn btn-primary" href="/trybunalska">Dowiedz się więcej →</a>
-                </div>
+    @auth
+        @if(auth()->user()->is_admin)
+            <div>
+                <p class="text-center">Stwórz nowy post: </p>
+                <form action="/create-post" method="POST">
+                    @csrf
+                    <input type="hidden" name="category" value=2>
+                    <input class="form-control" name="title" type="text"
+                           style="width: 100%; margin-bottom: 10px"
+                           placeholder="Tytuł">
+                    <textarea class="form-control" name="body" placeholder="Napisz post.."
+                              style="height: 4rem; margin-bottom: 10px" required></textarea>
+                    <div class="invalid-feedback">Nie napisałeś treści posta.. :c</div>
+                    <div class="d-none" id="submitSuccessMessage">
+                        <div class="text-center mb-3">
+                            <div class="fw-bolder">Form submission successful!</div>
+                        </div>
+                    </div>
+                    <div class="d-none" id="submitErrorMessage">
+                        <div class="text-center text-danger mb-3">Error sending message!</div>
+                    </div>
+                    <div class="d-grid">
+                        <button class="btn btn-primary btn-lg" type="submit">Stwórz post</button>
+                    </div>
+                </form>
             </div>
+        @endif
+        <div>
+            @if(auth()->user()->is_admin)
+                @foreach ($allPosts as $post)
+                    @if($post['category']===2)
+                        <div
+                            style="border: grey solid 1px; border-radius: 5px; padding: 10px; margin: 10px;">
+                            <h5>Tytuł: {{$post['title']}} &emsp; Autor: {{$post->user->name}}</h5>
+                            {{$post['body']}}
+                            <p><a href="/edit-post/{{$post->id}}"><strong>Edytuj</strong></a></p>
+                            <form action="/delete-post/{{$post->id}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="delete-button">Usuń</button>
+                            </form>
+                        </div>
+
+                    @endif
+                @endforeach
+            @endif
+        </div>
+    @else
+    @endauth
+    <!-- Blog entries-->
+    <div class="row">
+        <div class="col-lg-8">
+            @foreach ($allPosts as $post)
+                @if($post['category']===2)
+                    <div class="card mb-4">
+                        <a href="/trybunalska"><img class="card-img-top"
+                                                        src="assets/img/Trybunalska-Lublin-City-Pub-362228425-813562113607527-8760184987243672556-n-jpg.jpg"
+                                                        alt="trybunalska obraz"/></a>
+                        <div class="card-body">
+                            <div class="small text-muted">Ostatnio edytowane: {{$post['updated_at']}}</div>
+                            <h2 class="card-title"> {{$post['title']}} Autor: {{$post->user->name}}</h2>
+                            <p class="card-text">                        {{$post['body']}}
+                            </p>
+                            <a class="btn btn-primary" href="/trybunalska">Dowiedz się więcej →</a>
+                        </div>
+                    </div>
+
+                @endif
+            @endforeach
+            <!-- Featured blog post-->
+
             <div class="row">
                 <div class="col-lg-6">
-{{--                    <!-- Blog post-->--}}
-{{--                    <div class="card mb-4">--}}
-{{--                        <a href="#!"><img class="card-img-top" src="assets/img/mandragora-rynek-10-2.jpg"--}}
-{{--                                          alt="mandragora obraz"/></a>--}}
-{{--                        <div class="card-body">--}}
-{{--                            <div class="small text-muted">27 maja, 2024</div>--}}
-{{--                            <h2 class="card-title h4">Mandragora</h2>--}}
-{{--                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis--}}
-{{--                                aliquid atque, nulla.</p>--}}
-{{--                            <a class="btn btn-primary" href="#!">Read more →</a>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
                     <!-- Blog post-->
-                    <!--                    <div class="card mb-4">-->
-                    <!--                        <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg"-->
-                    <!--                                          alt="..."/></a>-->
-                    <!--                        <div class="card-body">-->
-                    <!--                            <div class="small text-muted">January 1, 2023</div>-->
-                    <!--                            <h2 class="card-title h4">Post Title</h2>-->
-                    <!--                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis-->
-                    <!--                                aliquid atque, nulla.</p>-->
-                    <!--                            <a class="btn btn-primary" href="#!">Read more →</a>-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
-                </div>
-                <div class="col-lg-6">
-{{--                    <!-- Blog post-->--}}
-{{--                    <div class="card mb-4">--}}
-{{--                        <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg"--}}
-{{--                                          alt="..."/></a>--}}
-{{--                        <div class="card-body">--}}
-{{--                            <div class="small text-muted">27 maja, 2024</div>--}}
-{{--                            <h2 class="card-title h4">Post Title</h2>--}}
-{{--                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis--}}
-{{--                                aliquid atque, nulla.</p>--}}
-{{--                            <a class="btn btn-primary" href="#!">Read more →</a>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-                    <!-- Blog post-->
-                    <!--                    <div class="card mb-4">-->
-                    <!--                        <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg"-->
-                    <!--                                          alt="..."/></a>-->
-                    <!--                        <div class="card-body">-->
-                    <!--                            <div class="small text-muted">January 1, 2023</div>-->
-                    <!--                            <h2 class="card-title h4">Post Title</h2>-->
-                    <!--                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis-->
-                    <!--                                aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam.</p>-->
-                    <!--                            <a class="btn btn-primary" href="#!">Read more →</a>-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
-                </div>
-            </div>
-            <!-- Pagination-->
-{{--            <nav aria-label="Pagination">--}}
-{{--                <hr class="my-0"/>--}}
-{{--                <ul class="pagination justify-content-center my-4">--}}
-{{--                    <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a>--}}
-{{--                    </li>--}}
-{{--                    <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>--}}
-{{--                    <li class="page-item"><a class="page-link" href="#!">2</a></li>--}}
-{{--                    <li class="page-item"><a class="page-link" href="#!">3</a></li>--}}
-{{--                    <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>--}}
-{{--                    <li class="page-item"><a class="page-link" href="#!">15</a></li>--}}
-{{--                    <li class="page-item"><a class="page-link" href="#!">Older</a></li>--}}
-{{--                </ul>--}}
-{{--            </nav>--}}
-        </div>
-        <!-- Side widgets-->
-        <div class="col-lg-4">
-            <!-- Search widget-->
-            <div class="card mb-4">
-                <div class="card-header">Search</div>
-                <div class="card-body">
-                    <div class="input-group">
-                        <input class="form-control" type="text" placeholder="Wpisz wyszukiwaną frazę..."
-                               aria-label="Enter search term..." aria-describedby="button-search"/>
-                        <button class="btn btn-primary" id="button-search" type="button">Szukaj!</button>
+                    <div class="card mb-4">
+                        <a href="#!"><img class="card-img-top" src="assets/img/mandragora-rynek-10-2.jpg"
+                                          alt="mandragora obraz"/></a>
+                        <div class="card-body">
+                            <div class="small text-muted">27 maja, 2024</div>
+                            <h2 class="card-title h4">Mandragora</h2>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis
+                                aliquid atque, nulla.</p>
+                            <a class="btn btn-primary" href="#!">Read more →</a>
+                        </div>
                     </div>
                 </div>
             </div>
-{{--            <!-- Categories widget-->--}}
-{{--            <div class="card mb-4">--}}
-{{--                <div class="card-header">Categories</div>--}}
-{{--                <div class="card-body">--}}
-{{--                    <div class="row">--}}
-{{--                        <div class="col-sm-6">--}}
-{{--                            <ul class="list-unstyled mb-0">--}}
-{{--                                <li><a href="#!">Web Design</a></li>--}}
-{{--                                <li><a href="#!">HTML</a></li>--}}
-{{--                                <li><a href="#!">Freebies</a></li>--}}
-{{--                            </ul>--}}
-{{--                        </div>--}}
-{{--                        <div class="col-sm-6">--}}
-{{--                            <ul class="list-unstyled mb-0">--}}
-{{--                                <li><a href="#!">JavaScript</a></li>--}}
-{{--                                <li><a href="#!">CSS</a></li>--}}
-{{--                                <li><a href="#!">Tutorials</a></li>--}}
-{{--                            </ul>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-            <!-- Side widget-->
-{{--            <div class="card mb-4">--}}
-{{--                <div class="card-header">Side Widget</div>--}}
-{{--                <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use,--}}
-{{--                    and feature the Bootstrap 5 card component!--}}
-{{--                </div>--}}
-{{--            </div>--}}
         </div>
     </div>
+    <!-- Blog post-->
+    <!--                    <div class="card mb-4">-->
+    <!--                        <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg"-->
+    <!--                                          alt="..."/></a>-->
+    <!--                        <div class="card-body">-->
+    <!--                            <div class="small text-muted">January 1, 2023</div>-->
+    <!--                            <h2 class="card-title h4">Post Title</h2>-->
+    <!--                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis-->
+    <!--                                aliquid atque, nulla.</p>-->
+    <!--                            <a class="btn btn-primary" href="#!">Read more →</a>-->
+    <!--                        </div>-->
+    <!--                    </div>-->
+    {{--                </div>--}}
+    {{--                <div class="col-lg-6">--}}
+    {{--                    <!-- Blog post-->--}}
+    {{--                    <div class="card mb-4">--}}
+    {{--                        <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg"--}}
+    {{--                                          alt="..."/></a>--}}
+    {{--                        <div class="card-body">--}}
+    {{--                            <div class="small text-muted">27 maja, 2024</div>--}}
+    {{--                            <h2 class="card-title h4">Post Title</h2>--}}
+    {{--                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis--}}
+    {{--                                aliquid atque, nulla.</p>--}}
+    {{--                            <a class="btn btn-primary" href="#!">Read more →</a>--}}
+    {{--                        </div>--}}
+    {{--                    </div>--}}
+    <!-- Blog post-->
+    <!--                    <div class="card mb-4">-->
+    <!--                        <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg"-->
+    <!--                                          alt="..."/></a>-->
+    <!--                        <div class="card-body">-->
+    <!--                            <div class="small text-muted">January 1, 2023</div>-->
+    <!--                            <h2 class="card-title h4">Post Title</h2>-->
+    <!--                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis-->
+    <!--                                aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam.</p>-->
+    <!--                            <a class="btn btn-primary" href="#!">Read more →</a>-->
+    <!--                        </div>-->
+    <!--                    </div>-->
+    {{--                </div>--}}
+    {{--            </div>--}}
+    <!-- Pagination-->
+    {{--            <nav aria-label="Pagination">--}}
+    {{--                <hr class="my-0"/>--}}
+    {{--                <ul class="pagination justify-content-center my-4">--}}
+    {{--                    <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a>--}}
+    {{--                    </li>--}}
+    {{--                    <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>--}}
+    {{--                    <li class="page-item"><a class="page-link" href="#!">2</a></li>--}}
+    {{--                    <li class="page-item"><a class="page-link" href="#!">3</a></li>--}}
+    {{--                    <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>--}}
+    {{--                    <li class="page-item"><a class="page-link" href="#!">15</a></li>--}}
+    {{--                    <li class="page-item"><a class="page-link" href="#!">Older</a></li>--}}
+    {{--                </ul>--}}
+    {{--            </nav>--}}
+    {{--        </div>--}}
+    <!-- Side widgets-->
+    {{--                        <div class="col-lg-4">--}}
+    {{--                            <!-- Search widget-->--}}
+    {{--                            <div class="card mb-4">--}}
+    {{--                                <div class="card-header">Search</div>--}}
+    {{--                                <div class="card-body">--}}
+    {{--                                    <div class="input-group">--}}
+    {{--                                        <input class="form-control" type="text"--}}
+    {{--                                               placeholder="Wpisz wyszukiwaną frazę..."--}}
+    {{--                                               aria-label="Enter search term..." aria-describedby="button-search"/>--}}
+    {{--                                        <button class="btn btn-primary" id="button-search" type="button">Szukaj!--}}
+    {{--                                        </button>--}}
+    {{--                                    </div>--}}
+    {{--                                </div>--}}
+    {{--                            </div>--}}
+    {{--            <!-- Categories widget-->--}}
+    {{--            <div class="card mb-4">--}}
+    {{--                <div class="card-header">Categories</div>--}}
+    {{--                <div class="card-body">--}}
+    {{--                    <div class="row">--}}
+    {{--                        <div class="col-sm-6">--}}
+    {{--                            <ul class="list-unstyled mb-0">--}}
+    {{--                                <li><a href="#!">Web Design</a></li>--}}
+    {{--                                <li><a href="#!">HTML</a></li>--}}
+    {{--                                <li><a href="#!">Freebies</a></li>--}}
+    {{--                            </ul>--}}
+    {{--                        </div>--}}
+    {{--                        <div class="col-sm-6">--}}
+    {{--                            <ul class="list-unstyled mb-0">--}}
+    {{--                                <li><a href="#!">JavaScript</a></li>--}}
+    {{--                                <li><a href="#!">CSS</a></li>--}}
+    {{--                                <li><a href="#!">Tutorials</a></li>--}}
+    {{--                            </ul>--}}
+    {{--                        </div>--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+    <!-- Side widget-->
+    {{--            <div class="card mb-4">--}}
+    {{--                <div class="card-header">Side Widget</div>--}}
+    {{--                <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use,--}}
+    {{--                    and feature the Bootstrap 5 card component!--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+    {{--    </div>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    <!-- CDN Link to SB Forms Scripts -->
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    <!-- Footer-->
+    <footer class="footer text-center">
+        <div class="container px-4 px-lg-5">
+            <ul class="list-inline mb-5">
+                <li class="list-inline-item">
+                    <a class="social-link rounded-circle text-white mr-3"
+                       href="https://www.facebook.com/MiastoLublin/"
+                       target="_blank"><i class="icon-social-facebook"></i></a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="social-link rounded-circle text-white mr-3"
+                       href="https://x.com/miasto_lublin?lang=pl"
+                       target="_blank"><i class="icon-social-twitter"></i></a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="social-link rounded-circle text-white"
+                       href="https://www.instagram.com/miastolublin/"
+                       target="_blank"><i class="icon-social-instagram"></i></a>
+                </li>
+            </ul>
+            <p class="text-muted small mb-0"> Lublin - miasto inspiracji <br>Copyright &copy MB</p>
+        </div>
+    </footer>
+    <!-- Scroll to Top Button-->
+    <script src="js/local.js"></script>
+    <a class="scroll-to-top rounded" href="#page-top"><i class="fas fa-angle-up"></i></a>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
 </div>
-<!-- CDN Link to SB Forms Scripts -->
-<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-<!-- Footer-->
-<footer class="footer text-center">
-    <div class="container px-4 px-lg-5">
-        <ul class="list-inline mb-5">
-            <li class="list-inline-item">
-                <a class="social-link rounded-circle text-white mr-3" href="https://www.facebook.com/MiastoLublin/"
-                   target="_blank"><i class="icon-social-facebook"></i></a>
-            </li>
-            <li class="list-inline-item">
-                <a class="social-link rounded-circle text-white mr-3" href="https://x.com/miasto_lublin?lang=pl"
-                   target="_blank"><i class="icon-social-twitter"></i></a>
-            </li>
-            <li class="list-inline-item">
-                <a class="social-link rounded-circle text-white" href="https://www.instagram.com/miastolublin/"
-                   target="_blank"><i class="icon-social-instagram"></i></a>
-            </li>
-        </ul>
-        <p class="text-muted small mb-0"> Lublin - miasto inspiracji <br>Copyright &copy MB</p>
-    </div>
-</footer>
-<!-- Scroll to Top Button-->
-<script src="js/local.js"></script>
-<a class="scroll-to-top rounded" href="#page-top"><i class="fas fa-angle-up"></i></a>
-<!-- Bootstrap core JS-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Core theme JS-->
-<script src="js/scripts.js"></script>
 </body>
 </html>

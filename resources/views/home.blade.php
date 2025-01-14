@@ -206,9 +206,10 @@
                                 <p class="text-center">Stwórz nową opinię: </p>
                                 <form action="/create-post" method="POST">
                                     @csrf
+                                    <input type="hidden" name="category" value="0">
                                     <input class="form-control" name="title" type="text"
-                                                                     style="width: 100%; margin-bottom: 10px"
-                                                                     placeholder="Tytuł">
+                                           style="width: 100%; margin-bottom: 10px"
+                                           placeholder="Tytuł">
                                     <textarea class="form-control" name="body" placeholder="Napisz swoją opinię.."
                                               style="height: 4rem; margin-bottom: 10px" required></textarea>
                                     <div class="invalid-feedback">Nie napisałeś nam opnii.. :c</div>
@@ -250,17 +251,19 @@
                                 <h4 class="fw-light" style="margin-top: -25px; margin-left: 10px; margin-bottom: 5px">od
                                     najnowszych</h4>
                                 @foreach ($posts as $post)
-                                    <div
-                                        style="border: grey solid 1px; border-radius: 5px; padding: 10px; margin: 10px;">
-                                        <h5>Tytuł: {{$post['title']}} &emsp; Autor: {{$post->user->name}}</h5>
-                                        {{$post['body']}}
-                                        <p><a href="/edit-post/{{$post->id}}"><strong>Edytuj</strong></a></p>
-                                        <form action="/delete-post/{{$post->id}}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="delete-button">Usuń</button>
-                                        </form>
-                                    </div>
+                                    @if($post['category']===0)
+                                        <div
+                                            style="border: grey solid 1px; border-radius: 5px; padding: 10px; margin: 10px;">
+                                            <h5>Tytuł: {{$post['title']}} &emsp; Autor: {{$post->user->name}}</h5>
+                                            {{$post['body']}}
+                                            <p><a href="/edit-post/{{$post->id}}"><strong>Edytuj</strong></a></p>
+                                            <form action="/delete-post/{{$post->id}}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="delete-button">Usuń</button>
+                                            </form>
+                                        </div>
+                                    @endif
                                 @endforeach
 
                                 @if(auth()->user()->is_admin)
@@ -270,17 +273,21 @@
                                             style="margin-top: -25px; margin-left: 10px; margin-bottom: 5px">od
                                             najnowszych</h4>
                                         @foreach ($allPosts as $post)
-                                            <div
-                                                style="border: grey solid 1px; border-radius: 5px; padding: 10px; margin: 10px;">
-                                                <h5>Tytuł: {{$post['title']}} &emsp; Autor: {{$post->user->name}}</h5>
-                                                {{$post['body']}}
-                                                <p><a href="/edit-post/{{$post->id}}"><strong>Edytuj</strong></a></p>
-                                                <form action="/delete-post/{{$post->id}}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button class="delete-button">Usuń</button>
-                                                </form>
-                                            </div>
+                                            @if($post['category']===0)
+                                                <div
+                                                    style="border: grey solid 1px; border-radius: 5px; padding: 10px; margin: 10px;">
+                                                    <h5>Tytuł: {{$post['title']}} &emsp;
+                                                        Autor: {{$post->user->name}}</h5>
+                                                    {{$post['body']}}
+                                                    <p><a href="/edit-post/{{$post->id}}"><strong>Edytuj</strong></a>
+                                                    </p>
+                                                    <form action="/delete-post/{{$post->id}}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="delete-button">Usuń</button>
+                                                    </form>
+                                                </div>
+                                            @endif
                                         @endforeach
                                     </div>
                                 @endif
@@ -345,15 +352,16 @@
                                     style="margin-top: -25px; margin-left: 10px; margin-bottom: 5px">od
                                     najnowszych</h4>
                                 @foreach ($allPosts as $post)
-                                    <div style="border: grey solid 1px; border-radius: 5px; padding: 10px; margin:
+                                    @if($post['category']===0)
+                                        <div style="border: grey solid 1px; border-radius: 5px; padding: 10px; margin:
                                         10px;"><h6>Tytuł: {{$post['title']}} &emsp; Autor: {{$post->user->name}}</h6>
-                                        {{$post['body']}}
-                                    </div>
+                                            {{$post['body']}}
+                                        </div>
+                                    @endif
                                 @endforeach
                                 <form id="contactForm">
                                 </form>
                                 <div id="form-error"></div>
-
                             </div>
                     </div>
                 </div>
