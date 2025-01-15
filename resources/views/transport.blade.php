@@ -21,18 +21,34 @@
 </head>
 <body id="page-top">
 <!-- Navigation-->
-<a class="menu-toggle rounded" href="#"><i class="fas fa-bars"></i></a>
-<nav id="sidebar-wrapper">
-    <ul class="sidebar-nav">
-        <li class="sidebar-brand"><a href="#page-top">Lublin</a></li>
-        <li class="sidebar-nav-item"><a href="/">Strona główna</a></li>
-        <li class="sidebar-nav-item"><a href="#about">Opis</a></li>
-        <li class="sidebar-nav-item"><a href="/#whyUs">Nasze usługi</a></li>
-        <li class="sidebar-nav-item"><a href="/#categories">Kategorie</a></li>
-        <li class="sidebar-nav-item"><a href="#opinions">Posty</a></li>
-        <li class="sidebar-nav-item"><a href="/#login">Zaloguj się</a></li>
-    </ul>
-</nav>
+@auth()
+
+    <a class="menu-toggle rounded" href="#"><i class="fas fa-bars"></i></a>
+    <nav id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand"><a href="#page-top">Lublin</a></li>
+            <li class="sidebar-nav-item"><a href="/">Strona główna</a></li>
+            <li class="sidebar-nav-item"><a href="#about">Opis</a></li>
+            <li class="sidebar-nav-item"><a href="/#whyUs">Nasze usługi</a></li>
+            <li class="sidebar-nav-item"><a href="/#categories">Kategorie</a></li>
+            <li class="sidebar-nav-item"><a href="#opinions">Posty</a></li>
+            {{--        <li class="sidebar-nav-item"><a href="/#login">Zaloguj się</a></li>--}}
+        </ul>
+    </nav>
+@else
+    <a class="menu-toggle rounded" href="#"><i class="fas fa-bars"></i></a>
+    <nav id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand"><a href="#page-top">Lublin</a></li>
+            <li class="sidebar-nav-item"><a href="/">Strona główna</a></li>
+            <li class="sidebar-nav-item"><a href="#about">Opis</a></li>
+            <li class="sidebar-nav-item"><a href="/#whyUs">Nasze usługi</a></li>
+            <li class="sidebar-nav-item"><a href="/#categories">Kategorie</a></li>
+            <li class="sidebar-nav-item"><a href="#opinions">Posty</a></li>
+            <li class="sidebar-nav-item"><a href="/#login">Zaloguj się</a></li>
+        </ul>
+    </nav>
+@endauth
 <!-- Header-->
 <header class="masthead d-flex align-items-center"
         style="background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 100%), url(assets/img/lublin_pkp.jpg); .btn-primary.--bs-btn-bg #cd853f;
