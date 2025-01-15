@@ -35,15 +35,16 @@
 </nav>
 <!-- Header-->
 <header class="masthead d-flex align-items-center"
-        style="background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 100%), url(/assets/img/arena3_2.jpg); .btn-primary.--bs-btn-bg #cd853f;
+        style="background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 100%), url(assets/img/arena3_2.jpg); .btn-primary.--bs-btn-bg #cd853f;
 --bs-btn-border-color: #cd853f;
 --bs-btn-hover-bg: #a0522d;
 --bs-btn-hover-border-color: #a0522d; ">
     <div class="container px-4 px-lg-5 text-center">
         <h1 class="mb-1" style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color: white">
             Lublin</h1>
-        <h3 class="mb-5" style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color: white"><em>kulinarne
-                inspiracje</em></h3>
+        <h3 class="mb-5" style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color: white"><em>miasto
+                sportu i rekreacji
+            </em></h3>
         <a class="btn btn-primary btn-xl" href="#about">Sprawdź!</a>
     </div>
 </header>
@@ -52,7 +53,7 @@
     <div class="container px-4 px-lg-5 text-center">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-auto">
-                <h2> Sport w Lublinie: Pasja, Energia i Wspólnota</h2>
+                <h2>Sport w Lublinie: Pasja, Energia i Wspólnota</h2>
                 <p class="lead mb-5">
                     Lublin, miasto pełne życia i dynamiki, to także prawdziwy raj dla miłośników sportu. Od nowoczesnych
                     obiektów sportowych, przez różnorodne zajęcia rekreacyjne, po wydarzenia na najwyższym poziomie –
@@ -60,8 +61,8 @@
                     zarówno profesjonalnych sportowców, jak i lokalnych entuzjastów. Miłośnicy aktywnego wypoczynku mogą
                     korzystać z licznych tras biegowych, ścieżek rowerowych czy basenów. Lublin to także miejsce dla
                     kibiców – emocje na trybunach podczas meczów piłki nożnej, siatkówki czy żużla są niezapomniane.
-                    Odkryj sportowy rytm miasta i poczuj energię, która jednoczy wszystkich – od amatorów po
-                    zawodowców! </p>
+                    Odkryj sportowy rytm miasta i poczuj energię, która jednoczy wszystkich – od amatorów po zawodowców!
+                </p>
             </div>
         </div>
     </div>
@@ -85,7 +86,7 @@
                     <h3 class="text-center">Stwórz nowy post: </h3>
                     <form action="/create-post" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <input type="hidden" name="category" value=2>
+                        <input type="hidden" name="category" value=4>
                         <input class="form-control" name="title" type="text"
                                style="width: 100%; margin-bottom: 10px"
                                placeholder="Tytuł" required>
@@ -110,9 +111,9 @@
                 @foreach ($allPosts as $post)
                     @if($post['category']===4)
                         <div class="card mb-4">
-                            <a href="/trybunalska"><img class="card-img-top"
-                                                        src="{{ asset('storage/' . $post->image) }}"
-                                                        alt="obraz"/></a>
+                            <a href="#"><img class="card-img-top"
+                                             src="{{ asset('storage/' . $post->image) }}"
+                                             alt="obraz"/></a>
                             <div class="card-body">
                                 <div class="small text-muted">Ostatnio edytowane: {{$post['updated_at']}}</div>
                                 <div class="row">
@@ -125,7 +126,7 @@
                                 </div>
                                 <p class="card-text">{{$post['body']}}
                                 </p>
-                                <a class="btn btn-primary" href="/trybunalska">Dowiedz się więcej →</a>
+                                <a class="btn btn-primary" href="/#">Dowiedz się więcej →</a>
                             </div>
                             <div class="card-footer">
                                 <div class="row">
@@ -145,6 +146,36 @@
 
                     @endif
                 @endforeach
+            @else
+                <!-- Blog entries-->
+                <div class="row">
+                    <div class="col-lg-10">
+                        @foreach ($allPosts as $post)
+                            @if($post['category']===4)
+                                <div class="card mb-4">
+                                    <a href="#"><img class="card-img-top"
+                                                     src="{{ asset('storage/' . $post->image) }}"
+                                                     alt="obraz"/></a>
+                                    <div class="card-body">
+                                        <div class="small text-muted">Ostatnio edytowane: {{$post['updated_at']}}</div>
+                                        <div class="row">
+                                            <div class="col-lg-8">
+                                                <h2 class="card-title">{{$post['title']}},</h2>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <h2>Autor: {{$post->user->name}}</h2>
+                                            </div>
+                                        </div>
+                                        <p class="card-text">{{$post['body']}}
+                                        </p>
+                                        <a class="btn btn-primary" href="/#">Dowiedz się więcej →</a>
+                                    </div>
+                                </div>
+                            @endif
+                        @endforeach
+
+                    </div>
+                </div>
             @endif
         @else
             <!-- Blog entries-->
@@ -153,9 +184,9 @@
                     @foreach ($allPosts as $post)
                         @if($post['category']===4)
                             <div class="card mb-4">
-                                <a href="/trybunalska"><img class="card-img-top"
-                                                            src="assets/img/Trybunalska-Lublin-City-Pub-362228425-813562113607527-8760184987243672556-n-jpg.jpg"
-                                                            alt="trybunalska obraz"/></a>
+                                <a href="#"><img class="card-img-top"
+                                                 src="{{ asset('storage/' . $post->image) }}"
+                                                 alt="obraz"/></a>
                                 <div class="card-body">
                                     <div class="small text-muted">Ostatnio edytowane: {{$post['updated_at']}}</div>
                                     <div class="row">
@@ -168,7 +199,7 @@
                                     </div>
                                     <p class="card-text">{{$post['body']}}
                                     </p>
-                                    <a class="btn btn-primary" href="/trybunalska">Dowiedz się więcej →</a>
+                                    <a class="btn btn-primary" href="/#">Dowiedz się więcej →</a>
                                 </div>
                             </div>
                         @endif
@@ -241,6 +272,5 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
 <script src="js/scripts.js"></script>
-</div>
 </body>
 </html>

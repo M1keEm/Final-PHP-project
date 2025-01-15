@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="description" content=""/>
     <meta name="author" content="Michał Banaszek"/>
-    <title>Lubelska gastronomia</title>
+    <title>Lubelski sport</title>
     <!-- Favicon-->
     <link rel="apple-touch-icon" type="image/x-icon" href="assets/favicon.ico"/>
     <!-- Font Awesome icons (free version)-->
@@ -35,15 +35,16 @@
 </nav>
 <!-- Header-->
 <header class="masthead d-flex align-items-center"
-        style="background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 100%), url(assets/img/cebularz-lublin.jpg); .btn-primary.--bs-btn-bg #cd853f;
+        style="background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 100%), url(assets/img/lublin_pkp.jpg); .btn-primary.--bs-btn-bg #cd853f;
 --bs-btn-border-color: #cd853f;
 --bs-btn-hover-bg: #a0522d;
 --bs-btn-hover-border-color: #a0522d; ">
     <div class="container px-4 px-lg-5 text-center">
         <h1 class="mb-1" style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color: white">
             Lublin</h1>
-        <h3 class="mb-5" style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color: white"><em>kulinarne
-                inspiracje</em></h3>
+        <h3 class="mb-5" style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color: white"><em>transport
+                przyszłości
+            </em></h3>
         <a class="btn btn-primary btn-xl" href="#about">Sprawdź!</a>
     </div>
 </header>
@@ -52,14 +53,17 @@
     <div class="container px-4 px-lg-5 text-center">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-auto">
-                <h2>Smaki Lublina: Kulinarna Podróż przez Tradycje i Nowoczesność</h2>
+                <h2>Komfort, Nowoczesność i Historia w Ruchu
+                </h2>
                 <p class="lead mb-5">
-                    Lublin, miasto pełne historii i kultury, to również prawdziwy raj dla smakoszy. Zanurz się w
-                    wyjątkowej atmosferze tego urokliwego miasta i odkryj bogactwo jego kulinarnych tradycji. Od
-                    aromatycznych cebularzy, przez przepyszne pierogi, po wykwintne dania kuchni kresowej – Lublin
-                    oferuje niezapomniane doznania smakowe. Przygotuj się na podróż pełną smaków, która zainspiruje
-                    Twoje kulinarne zmysły i zaspokoi apetyt na nowe doświadczenia. Zapraszamy do odkrycia najlepszych
-                    miejsc i potraw, które uczynią Twoją wizytę w Lublinie niezapomnianą.
+                    Lublin, miasto o bogatej historii i dynamicznie rozwijającej się infrastrukturze, oferuje
+                    mieszkańcom i turystom nowoczesne i wygodne rozwiązania transportowe. Od historycznych linii
+                    trolejbusowych, przez nowoczesne autobusy elektryczne, aż po rozwijającą się sieć rowerów miejskich
+                    – lubelski transport to połączenie tradycji z przyszłością. Sprawnie funkcjonujący system
+                    komunikacji miejskiej umożliwia szybkie przemieszczanie się między malowniczym Starym Miastem,
+                    zielonymi parkami i nowoczesnymi dzielnicami. Dla miłośników aktywnego trybu życia dostępne są
+                    liczne ścieżki rowerowe, które łączą różne części miasta. Odkryj Lublin w ruchu – wygodnie,
+                    ekologicznie i z pasją.
                 </p>
             </div>
         </div>
@@ -84,7 +88,8 @@
                     <h3 class="text-center">Stwórz nowy post: </h3>
                     <form action="/create-post" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <input type="hidden" name="category" value=2>
+                        <input type="hidden" name="category" value=3
+                        >
                         <input class="form-control" name="title" type="text"
                                style="width: 100%; margin-bottom: 10px"
                                placeholder="Tytuł" required>
@@ -107,7 +112,7 @@
                     </form>
                 </div>
                 @foreach ($allPosts as $post)
-                    @if($post['category']===2)
+                    @if($post['category']===3)
                         <div class="card mb-4">
                             <a href="#"><img class="card-img-top"
                                              src="{{ asset('storage/' . $post->image) }}"
@@ -149,7 +154,7 @@
                 <div class="row">
                     <div class="col-lg-10">
                         @foreach ($allPosts as $post)
-                            @if($post['category']===2)
+                            @if($post['category']===3)
                                 <div class="card mb-4">
                                     <a href="#"><img class="card-img-top"
                                                      src="{{ asset('storage/' . $post->image) }}"
@@ -180,7 +185,9 @@
             <div class="row">
                 <div class="col-lg-10">
                     @foreach ($allPosts as $post)
-                        @if($post['category']===2)
+                        @if($post['category']===3
+
+                        )
                             <div class="card mb-4">
                                 <a href="#"><img class="card-img-top"
                                                  src="{{ asset('storage/' . $post->image) }}"
@@ -206,36 +213,78 @@
                 </div>
             </div>
         @endauth
+
         <!-- Pagination-->
-        {{--            <nav aria-label="Pagination">--}}
-        {{--                <hr class="my-0"/>--}}
-        {{--                <ul class="pagination justify-content-center my-4">--}}
-        {{--                    <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a>--}}
-        {{--                    </li>--}}
-        {{--                    <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>--}}
-        {{--                    <li class="page-item"><a class="page-link" href="#!">2</a></li>--}}
-        {{--                    <li class="page-item"><a class="page-link" href="#!">3</a></li>--}}
-        {{--                    <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>--}}
-        {{--                    <li class="page-item"><a class="page-link" href="#!">15</a></li>--}}
-        {{--                    <li class="page-item"><a class="page-link" href="#!">Older</a></li>--}}
-        {{--                </ul>--}}
-        {{--            </nav>--}}
-        {{--        </div>--}}
+        {{--
+        <nav aria-label="Pagination">--}}
+        {{--
+        <hr class="my-0"/>
+        --}}
+        {{--
+        <ul class="pagination justify-content-center my-4">--}}
+        {{--
+        <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1"
+                                          aria-disabled="true">Newer</a>--}}
+        {{--
+    </li>
+    --}}
+        {{--
+        <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
+        --}}
+        {{--
+        <li class="page-item"><a class="page-link" href="#!">2</a></li>
+        --}}
+        {{--
+        <li class="page-item"><a class="page-link" href="#!">3</a></li>
+        --}}
+        {{--
+        <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
+        --}}
+        {{--
+        <li class="page-item"><a class="page-link" href="#!">15</a></li>
+        --}}
+        {{--
+        <li class="page-item"><a class="page-link" href="#!">Older</a></li>
+        --}}
+        {{--
+    </ul>
+    --}}
+        {{--
+    </nav>
+    --}}
+        {{--
+    </div>
+    --}}
         <!-- Side widgets-->
-        {{--                        <div class="col-lg-4">--}}
+        {{--
+        <div class="col-lg-4">--}}
         {{--                            <!-- Search widget-->--}}
-        {{--                            <div class="card mb-4">--}}
-        {{--                                <div class="card-header">Search</div>--}}
-        {{--                                <div class="card-body">--}}
-        {{--                                    <div class="input-group">--}}
-        {{--                                        <input class="form-control" type="text"--}}
-        {{--                                               placeholder="Wpisz wyszukiwaną frazę..."--}}
-        {{--                                               aria-label="Enter search term..." aria-describedby="button-search"/>--}}
-        {{--                                        <button class="btn btn-primary" id="button-search" type="button">Szukaj!--}}
-        {{--                                        </button>--}}
-        {{--                                    </div>--}}
-        {{--                                </div>--}}
-        {{--                            </div>--}}
+        {{--
+        <div class="card mb-4">--}}
+        {{--
+        <div class="card-header">Search</div>
+        --}}
+        {{--
+        <div class="card-body">--}}
+        {{--
+        <div class="input-group">--}}
+        {{-- <input class="form-control" type="text" --}}
+        {{-- placeholder="Wpisz wyszukiwaną frazę..." --}}
+        {{-- aria-label="Enter search term..." aria-describedby="button-search"/>--}}
+        {{--
+        <button class="btn btn-primary" id="button-search" type="button">Szukaj!--}}
+        {{--
+    </button>
+    --}}
+        {{--
+    </div>
+    --}}
+        {{--
+    </div>
+    --}}
+        {{--
+    </div>
+    --}}
     </div>
 </section>
 <!-- CDN Link to SB Forms Scripts -->
