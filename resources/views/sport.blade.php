@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="description" content=""/>
     <meta name="author" content="Michał Banaszek"/>
-    <title>Lubelska gastronomia</title>
+    <title>Lubelski sport</title>
     <!-- Favicon-->
     <link rel="apple-touch-icon" type="image/x-icon" href="assets/favicon.ico"/>
     <!-- Font Awesome icons (free version)-->
@@ -35,7 +35,7 @@
 </nav>
 <!-- Header-->
 <header class="masthead d-flex align-items-center"
-        style="background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 100%), url(assets/img/cebularz-lublin.jpg); .btn-primary.--bs-btn-bg #cd853f;
+        style="background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 100%), url(/assets/img/arena3_2.jpg); .btn-primary.--bs-btn-bg #cd853f;
 --bs-btn-border-color: #cd853f;
 --bs-btn-hover-bg: #a0522d;
 --bs-btn-hover-border-color: #a0522d; ">
@@ -52,15 +52,16 @@
     <div class="container px-4 px-lg-5 text-center">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-auto">
-                <h2>Smaki Lublina: Kulinarna Podróż przez Tradycje i Nowoczesność</h2>
+                <h2> Sport w Lublinie: Pasja, Energia i Wspólnota</h2>
                 <p class="lead mb-5">
-                    Lublin, miasto pełne historii i kultury, to również prawdziwy raj dla smakoszy. Zanurz się w
-                    wyjątkowej atmosferze tego urokliwego miasta i odkryj bogactwo jego kulinarnych tradycji. Od
-                    aromatycznych cebularzy, przez przepyszne pierogi, po wykwintne dania kuchni kresowej – Lublin
-                    oferuje niezapomniane doznania smakowe. Przygotuj się na podróż pełną smaków, która zainspiruje
-                    Twoje kulinarne zmysły i zaspokoi apetyt na nowe doświadczenia. Zapraszamy do odkrycia najlepszych
-                    miejsc i potraw, które uczynią Twoją wizytę w Lublinie niezapomnianą.
-                </p>
+                    Lublin, miasto pełne życia i dynamiki, to także prawdziwy raj dla miłośników sportu. Od nowoczesnych
+                    obiektów sportowych, przez różnorodne zajęcia rekreacyjne, po wydarzenia na najwyższym poziomie –
+                    każdy znajdzie tu coś dla siebie. Areny takie jak Stadion Arena Lublin czy Hala Globus goszczą
+                    zarówno profesjonalnych sportowców, jak i lokalnych entuzjastów. Miłośnicy aktywnego wypoczynku mogą
+                    korzystać z licznych tras biegowych, ścieżek rowerowych czy basenów. Lublin to także miejsce dla
+                    kibiców – emocje na trybunach podczas meczów piłki nożnej, siatkówki czy żużla są niezapomniane.
+                    Odkryj sportowy rytm miasta i poczuj energię, która jednoczy wszystkich – od amatorów po
+                    zawodowców! </p>
             </div>
         </div>
     </div>
@@ -107,11 +108,11 @@
                     </form>
                 </div>
                 @foreach ($allPosts as $post)
-                    @if($post['category']===2)
+                    @if($post['category']===4)
                         <div class="card mb-4">
-                            <a href="#"><img class="card-img-top"
-                                             src="{{ asset('storage/' . $post->image) }}"
-                                             alt="obraz"/></a>
+                            <a href="/trybunalska"><img class="card-img-top"
+                                                        src="{{ asset('storage/' . $post->image) }}"
+                                                        alt="obraz"/></a>
                             <div class="card-body">
                                 <div class="small text-muted">Ostatnio edytowane: {{$post['updated_at']}}</div>
                                 <div class="row">
@@ -145,18 +146,16 @@
                     @endif
                 @endforeach
             @endif
-
         @else
-        @endauth
             <!-- Blog entries-->
             <div class="row">
                 <div class="col-lg-10">
                     @foreach ($allPosts as $post)
-                        @if($post['category']===2)
+                        @if($post['category']===4)
                             <div class="card mb-4">
-                                <a href="#"><img class="card-img-top"
-                                                 src="{{ asset('storage/' . $post->image) }}"
-                                                 alt="obraz"/></a>
+                                <a href="/trybunalska"><img class="card-img-top"
+                                                            src="assets/img/Trybunalska-Lublin-City-Pub-362228425-813562113607527-8760184987243672556-n-jpg.jpg"
+                                                            alt="trybunalska obraz"/></a>
                                 <div class="card-body">
                                     <div class="small text-muted">Ostatnio edytowane: {{$post['updated_at']}}</div>
                                     <div class="row">
@@ -169,7 +168,7 @@
                                     </div>
                                     <p class="card-text">{{$post['body']}}
                                     </p>
-                                    <a class="btn btn-primary" href="/#">Dowiedz się więcej →</a>
+                                    <a class="btn btn-primary" href="/trybunalska">Dowiedz się więcej →</a>
                                 </div>
                             </div>
                         @endif
@@ -177,6 +176,7 @@
 
                 </div>
             </div>
+        @endauth
         <!-- Pagination-->
         {{--            <nav aria-label="Pagination">--}}
         {{--                <hr class="my-0"/>--}}

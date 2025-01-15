@@ -61,10 +61,11 @@
     <div class="container px-4 px-lg-5 text-center">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-auto">
-                <h2>Odkryj uroki Lublina - przewodnik po najciekawszych atrakcjach miasta!</h2>
+                <h2>Odkryj uroki Lublina - przeglądaj posty o atrakcjach miasta!</h2>
                 <p class="lead mb-5">
-                    Witamy na stronie poświęconej Lublinowi, urokliwemu miastu położonemu we wschodniej Polsce,
-                    pełnemu
+                    Witamy na stronie poświęconej postom i wpisom o tematyce Lublina, urokliwego miasta położonego we
+                    wschodniej Polsce,
+                    pełnego
                     bogatej historii, kultury i niezapomnianych miejsc. Lublin zachwyca swoją średniowieczną
                     starówką,
                     tętniącym życiem kulturalnym oraz wyjątkowym klimatem, który przyciąga turystów z całego świata.
@@ -133,7 +134,7 @@
         </div>
         <div class="row gx-0">
             <div class="col-lg-6">
-                <a class="portfolio-item" href="#!">
+                <a class="portfolio-item" href="/turism">
                     <div class="caption">
                         <div class="caption-content">
                             <div class="h1 mb-1">Turystyka</div>
@@ -160,7 +161,7 @@
                 </a>
             </div>
             <div class="col-lg-6">
-                <a class="portfolio-item" href="#!">
+                <a class="portfolio-item" href="/transport">
                     <div class="caption">
                         <div class="caption-content">
                             <div class="h1 mb-1">Transport</div>
@@ -174,7 +175,7 @@
                 </a>
             </div>
             <div class="col-lg-6">
-                <a class="portfolio-item" href="#!">
+                <a class="portfolio-item" href="/sport">
                     <div class="caption">
                         <div class="caption-content">
                             <div class="h1 mb-1">Sport</div>

@@ -27,6 +27,33 @@ Route::get('/food', function () {
     return view('food', ['posts' => $posts], ['allPosts' => $allPosts]);
 });
 
+Route::get('/sport', function () {
+    $posts = [];
+    $allPosts = Post::latest()->get();
+    if (auth()->check()) {
+        $posts = auth()->user()->usersCoolPosts()->latest()->get();
+    }
+    return view('sport', ['posts' => $posts], ['allPosts' => $allPosts]);
+});
+
+Route::get('/transport', function () {
+    $posts = [];
+    $allPosts = Post::latest()->get();
+    if (auth()->check()) {
+        $posts = auth()->user()->usersCoolPosts()->latest()->get();
+    }
+    return view('transport', ['posts' => $posts], ['allPosts' => $allPosts]);
+});
+
+Route::get('/turism', function () {
+    $posts = [];
+    $allPosts = Post::latest()->get();
+    if (auth()->check()) {
+        $posts = auth()->user()->usersCoolPosts()->latest()->get();
+    }
+    return view('turism', ['posts' => $posts], ['allPosts' => $allPosts]);
+});
+
 Route::post('/register', [UserController::class, 'register']);
 
 Route::post('/logout', [UserController::class, 'logout']);
