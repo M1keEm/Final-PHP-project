@@ -28,7 +28,7 @@ Wersje programów wykorzystane do tworzenia aplikacji (aplikacja nie została pr
 
 ## Uruchomienie
 1. Wypakować pliki z folderu zip
-2. Folder projektowy `final-project` otworzyć w wybranym IDE(np. VisualStudioCode, PHPStorm)
+2. Folder projektowy `lublin-website` otworzyć w wybranym IDE(np. VisualStudioCode, PHPStorm)
 3. W folderze projektu, w terminalu wpisać `npm install` w celu instalacji zaleznosci `node_modules`
 4. W folderze projektu, w terminalu wpisać `composer install` w celu instalacji zaleznosci `vendor`
 5. Włączyć XAMPP MySQL Database oraz Apache Web Server
@@ -41,7 +41,7 @@ Wersje programów wykorzystane do tworzenia aplikacji (aplikacja nie została pr
 1. W przypadku kiedy nie wyświetlają się zdjęcia, zalecane jest wykonanie komendy w terminalu IDE: `php artisan storage:link` w celu zlinkowania storage/app/public z public/storage
 2. W przypadku wystąpienia błędów związanych ze sterownikiem bazy danych/ obsługą PDO itp. należy otworzyć plik php.ini i odkomentować wszystkie niezbędne rozszerzenia: mysqli, pdo_mysql
 3. W przypadku wystąpienia innych błędów związanych z plikiem konfiguracyjnym php.ini należy prowadzić działania zgodne z instrukcjami i kodami błędów w terminalu (np. w IDE). 
-4. Projekt dostępny jest również na profilu: **[GITHUB](https://github.com/M1keEm/Final-PHP-project)**
+4. Projekt dostępny jest również na profilu: **[GITHUB](https://github.com/M1keEm/lublin-website)**
 
 ## Konta testowe
 -   **Admin**
